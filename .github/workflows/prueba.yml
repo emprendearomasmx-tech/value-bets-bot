@@ -1,0 +1,17 @@
+name: Prueba de Telegram
+on: 
+  workflow_dispatch: # Esto pone el botón para ejecutarlo a mano
+
+jobs:
+  enviar_mensaje:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Enviar mensaje de prueba
+        run: python prueba.py
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
